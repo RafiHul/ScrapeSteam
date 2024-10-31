@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import time
 import requests
 
-chrome_driver_path = r"C:\Users\rafih\Desktop\chromedriver-win64\chromedriver.exe"
+chrome_driver_path = r"your path"
 main_url = "https://store.steampowered.com/search/?sort_by=_ASC&hidef2p=1&filter=topsellers&supportedlang=english"
 
 options = webdriver.ChromeOptions()
