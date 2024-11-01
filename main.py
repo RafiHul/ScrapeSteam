@@ -67,6 +67,7 @@ for i,j in zip(find_links, find_final_price):
             response_img = requests.get(img_url)
             file.write(response_img.content)
 
+        #read json file is blank or no
         try:
             with open(json_name,"r",encoding="utf-8") as read_json:
                 existing_data = json.load(read_json)
@@ -76,6 +77,7 @@ for i,j in zip(find_links, find_final_price):
         #json dummy
         existing_data.append(data)
 
+        #write json
         with open(json_name,"w",encoding="utf-8") as write_json:
             json.dump(existing_data,write_json,ensure_ascii=False,indent=4)
 
