@@ -1,3 +1,4 @@
+from json.decoder import JSONDecodeError
 from fake_useragent import UserAgent
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -9,8 +10,8 @@ import json
 import time
 import requests
 
-limit = int(input("Data Limit : "))
-chrome_driver_path = r"C:\Users\rafih\Desktop\chromedriver-win64\chromedriver.exe"
+limit = int(input("Data Limit : ")) + 1
+chrome_driver_path = r"chrome driver path"
 main_url = "https://store.steampowered.com/search/?sort_by=_ASC&hidef2p=1&filter=topsellers&supportedlang=english"
 json_name = "data.json"
 
@@ -66,22 +67,20 @@ for i,j in zip(find_links, find_final_price):
             response_img = requests.get(img_url)
             file.write(response_img.content)
 
-        #read json file is blank or no
         try:
             with open(json_name,"r",encoding="utf-8") as read_json:
                 existing_data = json.load(read_json)
-        except FileNotFoundError:
+        except:
             existing_data = []
 
         #json dummy
         existing_data.append(data)
 
-        #write json
         with open(json_name,"w",encoding="utf-8") as write_json:
             json.dump(existing_data,write_json,ensure_ascii=False,indent=4)
 
         n += 1
-        if n == limit: #stop
+        if n == limit:
             break
 
         print(f"Success {find_title.text}")
