@@ -13,7 +13,6 @@ soup = BeautifulSoup(response.text, "html.parser")
 find_links = soup.find_all("a", {"class": "search_result_row ds_collapse_flag"})
 find_final_price = soup.find_all("div",{"class":"discount_final_price"})
 
-n = 0
 for i,j in zip(find_links, find_final_price):
     url: str = i.get("href")
     response = requests.get(url, headers={"UserAgents": UserAgent().chrome})
@@ -55,9 +54,7 @@ for i,j in zip(find_links, find_final_price):
         with open(json_name,"w",encoding="utf-8") as write_json:
             json.dump(existing_data,write_json,ensure_ascii=False,indent=4)
 
-        n += 1
-
-        print(f"Success {find_title.text}",n)
+        print(f"Success {find_title.text}")
 
     except AttributeError:
         continue
